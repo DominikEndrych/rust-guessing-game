@@ -15,6 +15,8 @@ fn main(){
         .read_line(&mut guess)
         .expect("Failed to read line");
 
+    let guess: u32 = guess.trim().parse().expect("Input is not a number!");
+
     // Print user guess
     println!("Guess: {guess}");
 }
