@@ -6,25 +6,27 @@ fn main(){
     let random_number = rand::rng().random_range(1..=100);
     println!("Generated number is {random_number}");
 
-    // Let user input number
-    println!("Guess the number: ");
+    loop{
+        // Let user input number
+        println!("Guess the number: ");
 
-    let mut guess = String::new();
+        let mut guess = String::new();
 
-    // Read input
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
+        // Read input
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
 
-    let guess: u32 = guess.trim().parse().expect("Input is not a number!");
+        let guess: u32 = guess.trim().parse().expect("Input is not a number!");
 
-    // Match
-    match guess.cmp(&random_number) {
-        Ordering::Less => println!("Too small"),
-        Ordering::Greater => println!("Too big"),
-        Ordering::Equal => println!("You win!"),
+        // Match
+        match guess.cmp(&random_number) {
+            Ordering::Less => println!("Too small"),
+            Ordering::Greater => println!("Too big"),
+            Ordering::Equal => {
+                println!("You win!");
+                break;
+            }
+        }
     }
-
-    // Print user guess
-    println!("Guess: {guess}");
 }
